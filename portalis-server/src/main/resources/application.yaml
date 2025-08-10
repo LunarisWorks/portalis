@@ -1,0 +1,21 @@
+ktor:
+  application:
+    modules:
+      - io.github.lunarisworks.portalis.server.ApplicationKt.module
+  deployment:
+    port: 8080
+
+postgres:
+  host: localhost
+  port: 5432
+  database: postgres
+  username: postgres
+  password: postgres
+
+security:
+  jwt:
+    realm: portalis
+    issuer: localhost:8080
+    audience: localhost:9090
+    expires-in: 7d
+    secret: jwt-secret-key

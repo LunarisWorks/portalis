@@ -1,0 +1,56 @@
+[versions]
+kotlin = "2.2.0"
+agp = "8.12.0"
+ksp = "2.2.0-2.0.2"
+logback = "1.5.18"
+multiplatformSettings = "1.3.0"
+maven-publish = "0.34.0"
+konform = "0.11.1"
+kotlinx-serialization = "1.9.0"
+exposed = "1.0.0-beta-5"
+hikaricp = "7.0.0"
+postgresql = "42.7.7"
+spring-security = "7.0.0-M1"
+# Testing
+kotest = "6.0.0.M15"
+testcontainers = "1.21.3"
+
+[libraries]
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+multiplatformSettings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
+konform = { module = "io.konform:konform", version.ref = "konform" }
+
+kotlinx-serialization-bom = { module = "org.jetbrains.kotlinx:kotlinx-serialization-bom", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json" }
+
+exposed-bom = { module = "org.jetbrains.exposed:exposed-bom", version.ref = "exposed" }
+exposed-core = { module = "org.jetbrains.exposed:exposed-core" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc" }
+exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime" }
+
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+
+spring-security-crypto = { module = "org.springframework.security:spring-security-crypto", version.ref = "spring-security" }
+commons-logging = { module = "commons-logging:commons-logging", version = "1.3.5" }
+
+# Testing
+kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
+kotest-framework-engine = { module = "io.kotest:kotest-framework-engine" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core" }
+kotest-assertions-ktor = { module = "io.kotest:kotest-assertions-ktor" }
+kotest-assertions-konform = { module = "io.kotest:kotest-assertions-konform" }
+kotest-extensions-testcontainers = { module = "io.kotest:kotest-extensions-testcontainers" }
+kotest-property = { module = "io.kotest:kotest-property" }
+
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotest = { id = "io.kotest", version.ref = "kotest" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
