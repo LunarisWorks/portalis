@@ -3,19 +3,19 @@ ktor:
     modules:
       - io.github.lunarisworks.portalis.server.ApplicationKt.module
   deployment:
-    port: 8080
+    port: $PORT:8080
 
 postgres:
-  host: localhost
-  port: 5432
-  database: postgres
-  username: postgres
-  password: postgres
+  host: "$POSTGRES_HOST:localhost"
+  port: $POSTGRES_PORT:5432
+  database: "$POSTGRES_DB:postgres"
+  username: "$POSTGRES_USdER:postgres"
+  password: "$POSTGRES_PASSWORD:postgres"
 
 security:
   jwt:
     realm: portalis
-    issuer: localhost:8080
-    audience: localhost:9090
-    expires-in: 7d
-    secret: jwt-secret-key
+    issuer: $JWT_ISSUER:localhost:8080
+    audience: $JWT_AUDIENCE:localhost:9090
+    expires-in: $JWT_EXPIRES_IN:7d
+    secret: $JWT_SECRET:jwt-secret-key
