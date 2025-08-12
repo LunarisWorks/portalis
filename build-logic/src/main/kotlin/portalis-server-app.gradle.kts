@@ -14,6 +14,12 @@ dependencies {
     testImplementation(ktorLibs.findLibrary("server.testHost").get())
 }
 
+ktor {
+    fatJar {
+        archiveFileName = "portalis-server.jar"
+    }
+}
+
 tasks {
     test {
         failOnNoDiscoveredTests = false
