@@ -72,7 +72,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Publish snapshot with Gradle
-        run: ./gradlew publish
+        # Temporarily disable configuration cache
+        run: ./gradlew publish --no-configuration-cache
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
