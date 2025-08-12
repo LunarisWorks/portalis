@@ -1,7 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.plugin.serialization)
-    alias(ktorLibs.plugins.ktor)
+    id("portalis-server-app")
     alias(libs.plugins.kotest)
 }
 
@@ -9,21 +7,9 @@ application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
 
-kotlin {
-    compilerOptions {
-        optIn =
-            listOf(
-                "kotlin.uuid.ExperimentalUuidApi",
-                "kotlin.time.ExperimentalTime",
-            )
-    }
-}
-
 dependencies {
     implementation(projects.portalisShared)
 
-    implementation(platform(ktorLibs.bom))
-    implementation(ktorLibs.server.core)
     implementation(ktorLibs.server.di)
     implementation(ktorLibs.server.netty)
     implementation(ktorLibs.server.config.yaml)

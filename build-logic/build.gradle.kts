@@ -7,7 +7,7 @@ dependencies {
     implementation(plugin(libs.plugins.kotlin.jvm))
     implementation(plugin(libs.plugins.kotlin.plugin.serialization))
     implementation(plugin(libs.plugins.android.library))
-//    implementation(plugin(libs.plugins.ktor))
+    implementation(plugin(ktorLibs.plugins.ktor))
     implementation(plugin(libs.plugins.kotest))
     implementation(plugin(libs.plugins.ksp))
     implementation(plugin(libs.plugins.maven.publish))
