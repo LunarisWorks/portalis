@@ -1,6 +1,5 @@
 plugins {
     id("portalis-server-app")
-    alias(libs.plugins.kotest)
 }
 
 application {
@@ -37,27 +36,15 @@ dependencies {
     implementation(libs.hikaricp)
     runtimeOnly(libs.postgresql)
 
-    testImplementation(ktorLibs.server.testHost)
-
     testImplementation(ktorLibs.client.resources)
     testImplementation(ktorLibs.client.contentNegotiation)
 
     testImplementation(platform(libs.testcontainers.bom))
     testImplementation(libs.testcontainers.postgresql)
 
-    testImplementation(platform(libs.kotest.bom))
-    testImplementation(libs.kotest.framework.engine)
-    testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.assertions.ktor)
     testImplementation(libs.kotest.assertions.konform)
     testImplementation(libs.kotest.extensions.testcontainers)
-    testImplementation(libs.kotest.property)
 
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.1.14")
-}
-
-tasks {
-    test {
-        failOnNoDiscoveredTests = false
-    }
 }

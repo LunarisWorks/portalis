@@ -8,7 +8,6 @@ kotlin {
             dependencies {
                 implementation(projects.portalisShared)
 
-                implementation(project.dependencies.platform(ktorLibs.bom))
                 implementation(ktorLibs.client.core)
                 implementation(ktorLibs.client.cio)
                 implementation(ktorLibs.client.resources)
