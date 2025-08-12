@@ -9,7 +9,10 @@ import io.github.lunarisworks.portalis.shared.journal.CreateJournalRequest
 import io.github.lunarisworks.portalis.shared.journal.JournalResponse
 import io.github.lunarisworks.portalis.shared.journal.PatchJournalRequest
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.resources.delete
 import io.ktor.client.plugins.resources.get
+import io.ktor.client.plugins.resources.patch
+import io.ktor.client.plugins.resources.post
 import io.ktor.client.request.setBody
 import kotlin.uuid.Uuid
 
@@ -31,7 +34,7 @@ internal class JournalApiImpl(
 
     override suspend fun create(request: CreateJournalRequest): ApiResult<JournalResponse> =
         httpClient
-            .get(Routes.Journals.Create()) {
+            .post(Routes.Journals.Create()) {
                 setBody(request)
             }.toApiResult()
 
@@ -40,12 +43,12 @@ internal class JournalApiImpl(
         request: PatchJournalRequest,
     ): ApiResult<JournalResponse> =
         httpClient
-            .get(Routes.Journals.Patch(id = id)) {
+            .patch(Routes.Journals.Patch(id = id)) {
                 setBody(request)
             }.toApiResult()
 
     override suspend fun delete(id: Uuid): ApiResult<Unit> =
         httpClient
-            .get(Routes.Journals.Delete(id = id))
+            .delete(Routes.Journals.Delete(id = id))
             .toApiResult()
 }
