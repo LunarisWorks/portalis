@@ -1,33 +1,13 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.android.library)
+    id("portalis-library")
     alias(libs.plugins.kotest)
     alias(libs.plugins.ksp)
-    id("publishing-conventions")
 }
 
 kotlin {
-    jvm()
-    jvmToolchain(21)
-    androidTarget {
-        publishLibraryVariants()
-    }
-
-    compilerOptions {
-        optIn =
-            listOf(
-                "kotlin.uuid.ExperimentalUuidApi",
-                "kotlin.time.ExperimentalTime",
-            )
-    }
-
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project.dependencies.platform(libs.kotlinx.serialization.bom))
-                implementation(libs.kotlinx.serialization.json)
-
                 implementation(project.dependencies.platform(ktorLibs.bom))
                 implementation(ktorLibs.resources)
                 implementation(ktorLibs.serialization.kotlinx.json)
@@ -44,9 +24,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "io.github.lunarisworks.portalis.shared"
-    compileSdk = 36
 }

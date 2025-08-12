@@ -1,24 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.android.library)
-    id("publishing-conventions")
+    id("portalis-library")
 }
 
 kotlin {
-    jvm()
-    jvmToolchain(21)
-    androidTarget {
-        publishLibraryVariants()
-    }
-    compilerOptions {
-        optIn =
-            listOf(
-                "kotlin.uuid.ExperimentalUuidApi",
-                "kotlin.time.ExperimentalTime",
-            )
-    }
-
     sourceSets {
         commonMain {
             dependencies {
@@ -41,9 +25,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "io.github.lunarisworks.portalis.client"
-    compileSdk = 36
 }
