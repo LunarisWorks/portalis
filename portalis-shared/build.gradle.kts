@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotest)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.maven.publish)
+    id("publishing-conventions")
 }
 
 kotlin {
