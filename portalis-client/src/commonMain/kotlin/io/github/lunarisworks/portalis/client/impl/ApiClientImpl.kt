@@ -44,7 +44,6 @@ internal class ApiClientImpl(
             install(ContentNegotiation) {
                 jsonIo(Json)
             }
-            install(Logging)
             install(Auth) {
                 bearer {
                     loadTokens {
@@ -53,7 +52,7 @@ internal class ApiClientImpl(
                         }
                     }
                     sendWithoutRequest {
-                        it.url.encodedPath.startsWith(NON_AUTHORIZED_PATH)
+                        !it.url.encodedPath.startsWith(NON_AUTHORIZED_PATH)
                     }
                 }
             }
