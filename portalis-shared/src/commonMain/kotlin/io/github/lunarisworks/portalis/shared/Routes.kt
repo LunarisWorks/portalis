@@ -39,7 +39,7 @@ object Routes {
     @Resource(JournalRoutes.BASE_PATH)
     data object Journals {
         /** Route to list journals with pagination support. */
-        @Resource("/")
+        @Resource("")
         data class List(
             val parent: Journals = Journals,
             override val cursor: String? = null,
@@ -54,7 +54,7 @@ object Routes {
         )
 
         /** Route to create a new journal. */
-        @Resource("/")
+        @Resource("")
         data class Create(
             val parent: Journals = Journals,
         )
