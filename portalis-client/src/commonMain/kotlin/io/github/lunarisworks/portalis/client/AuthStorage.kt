@@ -19,4 +19,7 @@ interface AuthStorage {
     fun clearTokens()
 }
 
-fun AuthStorage(settings: Settings = Settings()): AuthStorage = AuthStorageImpl(settings)
+fun AuthStorage(
+    settings: Settings = Settings(),
+    storageKey: String = AuthStorageImpl.DEFAULT_AUTH_STORAGE_KEY,
+): AuthStorage = AuthStorageImpl(settings, storageKey)

@@ -5,22 +5,23 @@ import io.github.lunarisworks.portalis.client.AuthStorage
 
 internal class AuthStorageImpl(
     private val settings: Settings,
+    private val storageKey: String,
 ) : AuthStorage {
-    override fun getAccessToken(): String? = settings.getStringOrNull(AUTH_TOKEN_KEY)
+    override fun getAccessToken(): String? = settings.getStringOrNull(storageKey)
 
     override fun setAccessToken(token: String?) {
         if (token == null) {
-            settings.remove(AUTH_TOKEN_KEY)
+            settings.remove(storageKey)
         } else {
-            settings.putString(AUTH_TOKEN_KEY, token)
+            settings.putString(storageKey, token)
         }
     }
 
     override fun clearTokens() {
-        settings.remove(AUTH_TOKEN_KEY)
+        settings.remove(storageKey)
     }
 
     companion object {
-        private const val AUTH_TOKEN_KEY = "portalis_auth_token"
+        const val DEFAULT_AUTH_STORAGE_KEY = "portalis_auth_token"
     }
 }
