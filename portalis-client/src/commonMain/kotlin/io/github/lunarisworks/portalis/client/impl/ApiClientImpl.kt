@@ -14,7 +14,6 @@ import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.resources.Resources
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
@@ -46,6 +45,7 @@ internal class ApiClientImpl(
             }
             install(Auth) {
                 bearer {
+                    realm = "portalis"
                     loadTokens {
                         authStorage.getAccessToken()?.let {
                             BearerTokens(it, null)
