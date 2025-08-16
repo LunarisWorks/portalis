@@ -6,16 +6,17 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(projects.portalisShared)
+                api(projects.portalisShared)
 
-                implementation(ktorLibs.client.core)
-                implementation(ktorLibs.client.cio)
-                implementation(ktorLibs.client.resources)
+                api(libs.multiplatformSettings)
+
+                api(ktorLibs.client.core)
+                api(ktorLibs.client.resources)
+                api(ktorLibs.client.contentNegotiation)
+
                 implementation(ktorLibs.client.logging)
+                implementation(ktorLibs.client.cio)
                 implementation(ktorLibs.client.auth)
-                implementation(ktorLibs.client.contentNegotiation)
-                implementation(ktorLibs.serialization.kotlinx.json)
-                implementation(libs.multiplatformSettings)
             }
         }
         jvmMain {

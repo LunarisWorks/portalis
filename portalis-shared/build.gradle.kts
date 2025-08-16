@@ -6,10 +6,10 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(ktorLibs.resources)
-                implementation(ktorLibs.serialization.kotlinx.json)
+                api(ktorLibs.resources)
+                api(ktorLibs.serialization.kotlinx.json)
 
-                implementation(libs.konform)
+                api(libs.konform)
             }
         }
     }

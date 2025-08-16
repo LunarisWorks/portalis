@@ -16,8 +16,6 @@ dependencies {
     runtimeOnly(libs.logback.classic)
 
     implementation(ktorLibs.server.contentNegotiation)
-    implementation(ktorLibs.serialization.kotlinx.json)
-    implementation(libs.konform)
 
     implementation(ktorLibs.server.auth)
     implementation(ktorLibs.server.auth.jwt)
