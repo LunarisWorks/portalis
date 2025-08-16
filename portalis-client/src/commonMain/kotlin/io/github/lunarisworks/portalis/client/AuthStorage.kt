@@ -16,10 +16,14 @@ interface AuthStorage {
 
     fun setAccessToken(token: String?)
 
+    fun setRefreshToken(token: String?)
+
+    fun getRefreshToken(): String?
+
     fun clearTokens()
 }
 
 fun AuthStorage(
     settings: Settings = Settings(),
-    storageKey: String = AuthStorageImpl.DEFAULT_AUTH_STORAGE_KEY,
-): AuthStorage = AuthStorageImpl(settings, storageKey)
+    storageKeyPrefix: String = AuthStorageImpl.DEFAULT_AUTH_STORAGE_KEY,
+): AuthStorage = AuthStorageImpl(settings, storageKeyPrefix)
