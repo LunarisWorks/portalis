@@ -38,4 +38,5 @@ fun RegisterRequest.toModel(): UserRegistration =
 fun AuthenticateTokens.toResponse(): TokensResponse =
     TokensResponse(
         accessToken = accessToken,
+        refreshToken = refreshToken,
     )

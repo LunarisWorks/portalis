@@ -19,4 +19,5 @@ data class RegisterRequest(
 @Serializable
 data class TokensResponse(
     val accessToken: String,
+    val refreshToken: String,
 )
