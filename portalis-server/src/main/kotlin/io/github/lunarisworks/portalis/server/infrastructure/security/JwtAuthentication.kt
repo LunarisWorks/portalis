@@ -41,9 +41,9 @@ fun Application.configureJwtAuthentication() {
         jwt(AUTH_JWT) {
             realm = config.realm
             verifier(
-                issuer = config.issuer,
-                audience = config.audience,
-                algorithm = Algorithm.HMAC256(config.secret),
+                issuer = config.accessToken.issuer,
+                audience = config.accessToken.audience,
+                algorithm = Algorithm.HMAC256(config.accessToken.secret),
             ) {
                 withClaimPresence(RegisteredClaims.SUBJECT)
                 withClaimPresence(USERNAME_CLAIM)

@@ -16,14 +16,14 @@ class JwtService(
     fun generateAccessToken(user: User): String =
         JWT
             .create()
-            .withIssuer(jwtConfig.issuer)
-            .withAudience(jwtConfig.audience)
-            .withExpiresAt(jwtConfig.expiresAt().toJavaInstant())
+            .withIssuer(jwtConfig.accessToken.issuer)
+            .withAudience(jwtConfig.accessToken.audience)
+            .withExpiresAt(jwtConfig.accessToken.expiresAt().toJavaInstant())
             .withSubject(user.id.toString())
             .withClaim(USERNAME_CLAIM, user.username)
             .withClaim(EMAIL_CLAIM, user.email)
             .withClaim(NAME_CLAIM, user.name)
-            .sign(Algorithm.HMAC256(jwtConfig.secret))
+            .sign(Algorithm.HMAC256(jwtConfig.accessToken.secret))
 
     fun generateRefreshToken(): String =
         Random

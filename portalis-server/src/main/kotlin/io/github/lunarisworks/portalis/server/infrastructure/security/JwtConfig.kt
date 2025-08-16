@@ -9,12 +9,27 @@ import kotlin.time.Duration
 @Serializable
 data class JwtConfig(
     val realm: String,
-    val issuer: String,
-    val audience: String,
-    @SerialName("expires-in")
-    @Serializable(with = DurationSerializer::class)
-    val expiresIn: Duration,
-    val secret: String,
+    @SerialName("access-token")
+    val accessToken: AccessToken,
+    @SerialName("refresh-token")
+    val refreshToken: RefreshToken,
 ) {
-    fun expiresAt() = Clock.System.now() + expiresIn
+    @Serializable
+    data class AccessToken(
+        val issuer: String,
+        val audience: String,
+        @SerialName("expires-in")
+        @Serializable(with = DurationSerializer::class)
+        val expiresIn: Duration,
+        val secret: String,
+    ) {
+        fun expiresAt() = Clock.System.now() + expiresIn
+    }
+
+    @Serializable
+    data class RefreshToken(
+        @SerialName("expires-in")
+        @Serializable(with = DurationSerializer::class)
+        val expiresIn: Duration,
+    )
 }

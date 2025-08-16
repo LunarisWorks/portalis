@@ -15,7 +15,10 @@ postgres:
 security:
   jwt:
     realm: portalis
-    issuer: $JWT_ISSUER:localhost:8080
-    audience: $JWT_AUDIENCE:localhost:9090
-    expires-in: $JWT_EXPIRES_IN:7d
-    secret: $JWT_SECRET:jwt-secret-key
+    access-token:
+      issuer: $JWT_ISSUER:localhost:8080
+      audience: $JWT_AUDIENCE:localhost:9090
+      expires-in: $JWT_EXPIRES_IN:1h
+      secret: $JWT_SECRET:jwt-secret-key
+    refresh-token:
+      expires-in: $JWT_REFRESH_EXPIRES_IN:7d
