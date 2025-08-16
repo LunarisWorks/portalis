@@ -18,6 +18,7 @@ data class UserRegistration(
 
 data class AuthenticateTokens(
     val accessToken: String,
+    val refreshToken: String,
 )
 
 fun LoginRequest.toModel(): LoginCredentials =

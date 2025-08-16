@@ -38,8 +38,32 @@ class AuthService(
                 return@dbQuery DomainError.InvalidCredentials.asFailure()
             }
 
+            val refreshToken = createValidRefreshToken(user)
+
             AuthenticateTokens(
                 accessToken = jwtService.generateAccessToken(user),
+                refreshToken = refreshToken,
             ).asSuccess()
         }
+
+    private fun createValidRefreshToken(user: User): String {
+        var attempts = 0
+        var refreshToken: String
+
+        do {
+            if (attempts >= GENERATE_REFRESH_TOKEN_MAX_ATTEMPTS) {
+                throw IllegalArgumentException("Invalid refresh token attempts")
+            }
+
+            refreshToken = jwtService.generateRefreshToken()
+            attempts++
+        } while (authRepository.isRefreshTokenExists(refreshToken))
+
+        authRepository.insertRefreshToken(user.id, refreshToken)
+        return refreshToken
+    }
+
+    companion object {
+        const val GENERATE_REFRESH_TOKEN_MAX_ATTEMPTS = 5
+    }
 }

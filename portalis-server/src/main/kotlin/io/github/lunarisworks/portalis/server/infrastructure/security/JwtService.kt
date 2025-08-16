@@ -3,6 +3,7 @@ package io.github.lunarisworks.portalis.server.infrastructure.security
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import io.github.lunarisworks.portalis.server.features.users.domain.User
+import kotlin.random.Random
 import kotlin.time.toJavaInstant
 
 internal const val USERNAME_CLAIM = "username"
@@ -23,4 +24,13 @@ class JwtService(
             .withClaim(EMAIL_CLAIM, user.email)
             .withClaim(NAME_CLAIM, user.name)
             .sign(Algorithm.HMAC256(jwtConfig.secret))
+
+    fun generateRefreshToken(): String =
+        Random
+            .nextBytes(REFRESH_TOKEN_LENGTH)
+            .joinToString("") { "%02x".format(it) }
+
+    companion object {
+        const val REFRESH_TOKEN_LENGTH = 128
+    }
 }
