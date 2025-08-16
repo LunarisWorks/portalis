@@ -32,6 +32,6 @@ internal fun connectToPostgres(config: DatabaseConfig): Database {
 
 internal fun migrateDatabase(database: Database) {
     transaction(database) {
-        SchemaUtils.create(UserSchema, JournalSchema)
+        SchemaUtils.create(UserSchema, JournalSchema, RefreshTokenSchema)
     }
 }
