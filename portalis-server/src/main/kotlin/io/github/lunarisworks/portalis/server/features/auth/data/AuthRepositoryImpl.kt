@@ -1,16 +1,20 @@
 package io.github.lunarisworks.portalis.server.features.auth.data
 
 import io.github.lunarisworks.portalis.server.features.auth.domain.AuthRepository
+import io.github.lunarisworks.portalis.server.features.auth.domain.RefreshTokenInfo
 import io.github.lunarisworks.portalis.server.features.auth.domain.UserRegistration
 import io.github.lunarisworks.portalis.server.features.users.domain.User
 import io.github.lunarisworks.portalis.server.infrastructure.database.RefreshTokenSchema
 import io.github.lunarisworks.portalis.server.infrastructure.database.UserSchema
 import org.jetbrains.exposed.v1.core.ResultRow
+import org.jetbrains.exposed.v1.core.and
 import org.jetbrains.exposed.v1.core.or
 import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.insertReturning
 import org.jetbrains.exposed.v1.jdbc.select
 import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.jetbrains.exposed.v1.jdbc.update
+import kotlin.time.Clock
 import kotlin.uuid.Uuid
 import kotlin.uuid.toJavaUuid
 import kotlin.uuid.toKotlinUuid
@@ -48,6 +52,30 @@ internal class AuthRepositoryImpl : AuthRepository {
             .select(RefreshTokenSchema.id)
             .where { RefreshTokenSchema.token eq token }
             .firstOrNull() != null
+
+    override fun findRefreshToken(token: String): RefreshTokenInfo? =
+        RefreshTokenSchema
+            .innerJoin(UserSchema)
+            .selectAll()
+            .where { (RefreshTokenSchema.token eq token) and (RefreshTokenSchema.revokedAt eq null) }
+            .map {
+                val user = rowToModel(it)
+                RefreshTokenInfo(
+                    id = it[RefreshTokenSchema.id].value.toKotlinUuid(),
+                    user = user,
+                    createdAt = it[RefreshTokenSchema.createdAt],
+                )
+            }.firstOrNull()
+
+    override fun revokeRefreshToken(id: Uuid) {
+        RefreshTokenSchema.update(
+            {
+                RefreshTokenSchema.id eq id.toJavaUuid()
+            },
+        ) {
+            it[revokedAt] = Clock.System.now()
+        }
+    }
 
     override fun insertRefreshToken(
         userId: Uuid,

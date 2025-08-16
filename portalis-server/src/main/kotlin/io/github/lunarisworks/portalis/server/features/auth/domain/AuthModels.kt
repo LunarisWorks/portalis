@@ -16,6 +16,10 @@ data class UserRegistration(
     val name: String? = null,
 )
 
+data class RefreshTokenCredentials(
+    val token: String,
+)
+
 data class AuthenticateTokens(
     val accessToken: String,
     val refreshToken: String,
