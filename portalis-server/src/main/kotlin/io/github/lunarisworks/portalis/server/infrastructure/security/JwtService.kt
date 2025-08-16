@@ -27,10 +27,10 @@ class JwtService(
 
     fun generateRefreshToken(): String =
         Random
-            .nextBytes(REFRESH_TOKEN_LENGTH)
+            .nextBytes(REFRESH_TOKEN_BYTE_LENGTH)
             .joinToString("") { "%02x".format(it) }
 
     companion object {
-        const val REFRESH_TOKEN_LENGTH = 128
+        const val REFRESH_TOKEN_BYTE_LENGTH = 32
     }
 }
