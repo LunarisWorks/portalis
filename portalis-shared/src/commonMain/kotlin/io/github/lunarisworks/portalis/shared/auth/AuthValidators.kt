@@ -17,6 +17,13 @@ val validateLoginRequest =
         }
     }
 
+val validateRefreshTokenRequest =
+    Validation {
+        RefreshTokenRequest::token {
+            notBlank()
+        }
+    }
+
 val validateRegisterRequest =
     Validation<RegisterRequest> {
         validate("username", { it.username.lowercase() }) {

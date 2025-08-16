@@ -1,6 +1,7 @@
 package io.github.lunarisworks.portalis.server.features.auth.domain
 
 import io.github.lunarisworks.portalis.shared.auth.LoginRequest
+import io.github.lunarisworks.portalis.shared.auth.RefreshTokenRequest
 import io.github.lunarisworks.portalis.shared.auth.RegisterRequest
 import io.github.lunarisworks.portalis.shared.auth.TokensResponse
 
@@ -37,6 +38,11 @@ fun RegisterRequest.toModel(): UserRegistration =
         email = email,
         password = password,
         name = name,
+    )
+
+fun RefreshTokenRequest.toModel(): RefreshTokenCredentials =
+    RefreshTokenCredentials(
+        token = token,
     )
 
 fun AuthenticateTokens.toResponse(): TokensResponse =

@@ -1,8 +1,10 @@
 package io.github.lunarisworks.portalis.server.plugins
 
 import io.github.lunarisworks.portalis.shared.auth.LoginRequest
+import io.github.lunarisworks.portalis.shared.auth.RefreshTokenRequest
 import io.github.lunarisworks.portalis.shared.auth.RegisterRequest
 import io.github.lunarisworks.portalis.shared.auth.validateLoginRequest
+import io.github.lunarisworks.portalis.shared.auth.validateRefreshTokenRequest
 import io.github.lunarisworks.portalis.shared.auth.validateRegisterRequest
 import io.github.lunarisworks.portalis.shared.journal.CreateJournalRequest
 import io.github.lunarisworks.portalis.shared.journal.PatchJournalRequest
@@ -27,6 +29,7 @@ private val validators =
     mapOf<KClass<*>, Validation<*>>(
         LoginRequest::class to validateLoginRequest,
         RegisterRequest::class to validateRegisterRequest,
+        RefreshTokenRequest::class to validateRefreshTokenRequest,
         CreateJournalRequest::class to validateCreateJournalRequest,
         PatchJournalRequest::class to validatePatchJournalRequest,
     )

@@ -23,6 +23,12 @@ object Routes {
         data class Login(
             val parent: Auth = Auth,
         )
+
+        /** Route for refreshing authentication tokens. */
+        @Resource(AuthRoutes.REFRESH_PATH)
+        data class Refresh(
+            val parent: Auth = Auth,
+        )
     }
 
     /** Base path for user-related routes. */

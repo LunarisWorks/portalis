@@ -7,6 +7,7 @@ import io.github.lunarisworks.portalis.server.features.auth.domain.toModel
 import io.github.lunarisworks.portalis.server.features.auth.domain.toResponse
 import io.github.lunarisworks.portalis.shared.Routes
 import io.github.lunarisworks.portalis.shared.auth.LoginRequest
+import io.github.lunarisworks.portalis.shared.auth.RefreshTokenRequest
 import io.github.lunarisworks.portalis.shared.auth.RegisterRequest
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
@@ -25,6 +26,14 @@ fun Route.authRoutes(authService: AuthService) {
         val body = call.receive<LoginRequest>()
         authService
             .login(body.toModel())
+            .toApiResult { it.toResponse() }
+            .respondTo(call)
+    }
+
+    post<Routes.Auth.Refresh> {
+        val body = call.receive<RefreshTokenRequest>()
+        authService
+            .refresh(body.toModel())
             .toApiResult { it.toResponse() }
             .respondTo(call)
     }
