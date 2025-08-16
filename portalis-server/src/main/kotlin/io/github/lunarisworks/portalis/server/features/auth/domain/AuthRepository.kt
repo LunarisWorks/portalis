@@ -13,7 +13,7 @@ interface AuthRepository {
 
     fun findUserWithPassword(username: String): Pair<User, String?>?
 
-    fun isRefreshTokenExists(token: String): Boolean
+    fun existsRefreshToken(token: String): Boolean
 
     fun insertRefreshToken(
         userId: Uuid,

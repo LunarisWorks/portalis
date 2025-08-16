@@ -43,7 +43,7 @@ internal class AuthRepositoryImpl : AuthRepository {
             .map { rowToModel(it) to it[UserSchema.passwordHash] }
             .firstOrNull()
 
-    override fun isRefreshTokenExists(token: String): Boolean =
+    override fun existsRefreshToken(token: String): Boolean =
         RefreshTokenSchema
             .select(RefreshTokenSchema.id)
             .where { RefreshTokenSchema.token eq token }
