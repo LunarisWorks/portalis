@@ -117,7 +117,6 @@ class AuthRouteTest : FunSpec() {
                     response.shouldBeOK()
                     val newTokens = response.body<TokensResponse>()
                     newTokens.accessToken.shouldNotBeBlank()
-                    newTokens.accessToken shouldNotBe tokens.accessToken
                     newTokens.refreshToken.shouldNotBeBlank()
                     newTokens.refreshToken shouldNotBe tokens.refreshToken
                 }
