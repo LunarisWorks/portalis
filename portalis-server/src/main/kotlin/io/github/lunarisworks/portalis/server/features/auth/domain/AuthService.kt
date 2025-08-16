@@ -6,7 +6,6 @@ import io.github.lunarisworks.portalis.server.core.asFailure
 import io.github.lunarisworks.portalis.server.core.asSuccess
 import io.github.lunarisworks.portalis.server.features.users.domain.User
 import io.github.lunarisworks.portalis.server.infrastructure.database.dbQuery
-import io.github.lunarisworks.portalis.server.infrastructure.security.AuthenticateTokens
 import io.github.lunarisworks.portalis.server.infrastructure.security.JwtService
 import org.springframework.security.crypto.password.PasswordEncoder
 
@@ -39,6 +38,8 @@ class AuthService(
                 return@dbQuery DomainError.InvalidCredentials.asFailure()
             }
 
-            jwtService.createToken(user).asSuccess()
+            AuthenticateTokens(
+                accessToken = jwtService.generateAccessToken(user),
+            ).asSuccess()
         }
 }

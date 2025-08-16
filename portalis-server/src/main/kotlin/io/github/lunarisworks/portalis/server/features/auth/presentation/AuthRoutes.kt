@@ -4,10 +4,10 @@ import io.github.lunarisworks.portalis.server.core.respondTo
 import io.github.lunarisworks.portalis.server.core.toApiResult
 import io.github.lunarisworks.portalis.server.features.auth.domain.AuthService
 import io.github.lunarisworks.portalis.server.features.auth.domain.toModel
+import io.github.lunarisworks.portalis.server.features.auth.domain.toResponse
 import io.github.lunarisworks.portalis.shared.Routes
 import io.github.lunarisworks.portalis.shared.auth.LoginRequest
 import io.github.lunarisworks.portalis.shared.auth.RegisterRequest
-import io.github.lunarisworks.portalis.shared.auth.TokensResponse
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.resources.post
@@ -25,10 +25,7 @@ fun Route.authRoutes(authService: AuthService) {
         val body = call.receive<LoginRequest>()
         authService
             .login(body.toModel())
-            .toApiResult {
-                TokensResponse(
-                    accessToken = it.accessToken,
-                )
-            }.respondTo(call)
+            .toApiResult { it.toResponse() }
+            .respondTo(call)
     }
 }

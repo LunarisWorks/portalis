@@ -2,6 +2,7 @@ package io.github.lunarisworks.portalis.server.features.auth.domain
 
 import io.github.lunarisworks.portalis.shared.auth.LoginRequest
 import io.github.lunarisworks.portalis.shared.auth.RegisterRequest
+import io.github.lunarisworks.portalis.shared.auth.TokensResponse
 
 data class LoginCredentials(
     val username: String,
@@ -13,6 +14,10 @@ data class UserRegistration(
     val email: String,
     val password: String,
     val name: String? = null,
+)
+
+data class AuthenticateTokens(
+    val accessToken: String,
 )
 
 fun LoginRequest.toModel(): LoginCredentials =
@@ -27,4 +32,9 @@ fun RegisterRequest.toModel(): UserRegistration =
         email = email,
         password = password,
         name = name,
+    )
+
+fun AuthenticateTokens.toResponse(): TokensResponse =
+    TokensResponse(
+        accessToken = accessToken,
     )
