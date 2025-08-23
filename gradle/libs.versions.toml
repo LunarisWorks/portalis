@@ -8,7 +8,7 @@ maven-publish = "0.34.0"
 konform = "0.11.1"
 kotlinx-serialization = "1.9.0"
 exposed = "1.0.0-beta-5"
-hikaricp = "7.0.0"
+hikaricp = "7.0.2"
 postgresql = "42.7.7"
 spring-security = "7.0.0-M1"
 # Testing
