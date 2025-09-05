@@ -44,5 +44,5 @@ dependencies {
     testImplementation(libs.kotest.assertions.konform)
     testImplementation(libs.kotest.extensions.testcontainers)
 
-    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.1.14")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.1.15")
 }
