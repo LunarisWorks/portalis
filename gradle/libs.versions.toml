@@ -12,7 +12,7 @@ hikaricp = "7.0.0"
 postgresql = "42.7.7"
 spring-security = "7.0.0-M1"
 # Testing
-kotest = "6.0.0.M17"
+kotest = "6.0.3"
 testcontainers = "1.21.3"
 
 [libraries]
