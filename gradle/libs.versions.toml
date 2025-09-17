@@ -10,7 +10,7 @@ kotlinx-serialization = "1.9.0"
 exposed = "1.0.0-beta-5"
 hikaricp = "7.0.0"
 postgresql = "42.7.7"
-spring-security = "7.0.0-M1"
+spring-security = "7.0.0-M3"
 # Testing
 kotest = "6.0.0.M17"
 testcontainers = "1.21.3"
